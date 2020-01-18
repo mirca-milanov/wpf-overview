@@ -7,49 +7,53 @@
   * Media
   * Container
   * Shapes
-* Layouting
+  * Miscellaneous
+* Panels
   * Canvas
   * StackPanel
   * WrapPanel
   * Grid
   * Dock
-* Data Binding
-* ContentControl
-* ItemsControl
-* DataContext
-* ItemsSource
-* Resources
-  * Static
-  * Dynamic
+* Data
+  * Data Binding
+  * Resources
+  * ContentControl
+  * ItemsControl
+  * DataContext
+  * ItemsSource
 * Style
 * Transform
   * LayoutTransform
   * RenderTransform
-* Tree
-  * Visual
-  * Logical
-* Object Hierarchy
-* Property
-  * DependencyProperty
-  * AttachedProperty
 * Triggers
 * Events
 * Animations
+* Architecture
+  * Tree
+  * Object Hierarchy
+* Property
+  * DependencyProperty
+  * AttachedProperty
 * Template
   * DataTemplate
   * ControlTemplate
-* Iterable Controls
 * Windows
   * Window
   * Dialog
   * App.xaml
 * Dependency Injection - Autofac
+* Command Design Pattern
+* INotifyPropertyChanged
+* ObservableCollection
+* Collection Controls
+* Hotkeys
+  * Access Keys
+  * Key Bindings
 * Value Converters
 * Validation
 * MVVM
   * Classic MVVM
   * Prism Framework MVVM
-* Hotkeys
 * Long running tasks
   * Dispatcher
   * BackgroundWorker
@@ -60,8 +64,8 @@
   * Shapes drawing
 * UserControl
 * CustomControl
+* Localization
 * Deployment
   * MSI
   * Squirrel
   * Wix
-* Localization

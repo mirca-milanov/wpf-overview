@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:WpfOverview"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel HorizontalAlignment="Left">
+        <TextBlock Text="Text Block"></TextBlock>
+        <Label>
+            <ContentControl>
+                <TextBlock Text="Label"></TextBlock>
+            </ContentControl>
+        </Label>
+        <Label  Content="Username:"/>
+        <TextBox/>
+        <Label  Content="Password:"/>
+        <PasswordBox/>
+    </StackPanel>
 </Window>

@@ -17,5 +17,11 @@
         <TextBox/>
         <Label  Content="Password:"/>
         <PasswordBox/>
+        <Button Click="Button_Click">
+                <TextBlock Text="Click me!"></TextBlock> 
+        </Button>
+        <ToggleButton Content="Toggle button" Click="ToggleButton_Click" Checked="ToggleButton_Checked"/>
+        <RepeatButton Content="Repeat button" Click="RepeatButton_Click" Interval="1000"/>
+        <TextBlock x:Name="tbCounter" Text="0"/>
     </StackPanel>
 </Window>

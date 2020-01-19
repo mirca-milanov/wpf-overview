@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,6 +24,32 @@ namespace WpfOverview
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((sender as Button).Content as TextBlock).Text);
+            MessageBox.Show(e.ToString());
+            MessageBox.Show(e.RoutedEvent.RoutingStrategy.ToString());
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton tb = sender as ToggleButton;
+            MessageBox.Show(tb.IsChecked.ToString());
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Checked!");
+            ToggleButton tb = sender as ToggleButton;
+            MessageBox.Show(tb.IsChecked.ToString());
+        }
+        int counter;
+        private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        {
+            counter++;
+            tbCounter.Text = counter.ToString();
         }
     }
 }

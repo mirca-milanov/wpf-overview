@@ -7,6 +7,98 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Text Controls:"/>
+            <TextBlock Text="Text Block"></TextBlock>
+            <Label>
+                <ContentControl>
+                    <TextBlock Text="Label"></TextBlock>
+                </ContentControl>
+            </Label>
+            <Label  Content="Username:"/>
+            <TextBox/>
+            <Label  Content="Password:"/>
+            <PasswordBox/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Button Controls:"/>
+            <Button Click="Button_Click">
+                <TextBlock Text="Click me!"></TextBlock>
+            </Button>
+            <ToggleButton Content="Toggle button" Click="ToggleButton_Click" Checked="ToggleButton_Checked"/>
+            <RepeatButton Content="Repeat button" Click="RepeatButton_Click" Interval="1000"/>
+            <TextBlock x:Name="tbCounter" Text="0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="10">
+            <TextBlock Text="Input Controls:"/>
+            <TextBox Text="Enter username:"/>
+            <PasswordBox Password="Password"/>
+            <CheckBox IsChecked="True" Content="Is alive"/>
+            <RadioButton GroupName="Gender" IsChecked="True" Content="Male"/>
+            <RadioButton GroupName="Gender" Content="Female"/>
+            <ComboBox SelectedIndex="0">
+                <ComboBoxItem Content="First"/>
+                <ComboBoxItem Content="Second"/>
+                <ComboBoxItem Content="Third"/>
+            </ComboBox>
+            <Calendar DisplayDate="2001-12-24"/>
+            <DatePicker SelectedDate="2024-3-12"/>
+            <Slider Minimum="0" Maximum="100" Value="50"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <TextBlock Text="Media Controls:"/>
+            <Image Source="Media/Bitmap1.bmp"/>
+            <!--<MediaElement x:Name="meSpongebob"  Source="C:\Users\User\source\repos\WpfOverview\Media\spongebob.mp4" Width="100" Height="100" LoadedBehavior="Play" Volume="1"/>-->
+            <Button Content="Replay!" Click="Button_Click_1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4">
+            <TextBlock Text="Container Controls:"/>
+            <Border>
+                <Border.BorderThickness>2</Border.BorderThickness>
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="Red"/>
+                </Border.BorderBrush>
+                <TextBlock>
+                    <TextBlock.Text>Bordered text!</TextBlock.Text>
+                </TextBlock>
+            </Border>
+            <TabControl>
+                <TabItem Header="First" IsSelected="True">
+                    <TabItem.Content>
+                        <StackPanel>
+                            <TextBlock>First</TextBlock>
+                            <TextBlock>Second</TextBlock>
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Second">
+                    <TabItem.Content>
+                        <StackPanel>
+                            <TextBlock>Third</TextBlock>
+                            <TextBlock>Fourth</TextBlock>
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
+            <Expander Header="Click to expand" Height="100" IsExpanded="False">
+                <Grid Background="#FFE5E5E5">
+                    <Button Background="PeachPuff">Hi</Button>
+                </Grid>
+            </Expander>
+            <GroupBox Header="Gender">
+                <StackPanel>
+                    <RadioButton Content="Male"/>
+                    <RadioButton Content="Female"/>
+                    <RadioButton Content="Other"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>

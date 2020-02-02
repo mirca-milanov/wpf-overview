@@ -54,7 +54,7 @@ namespace WpfOverview
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            meSpongebob.Position = new TimeSpan(0);
+            //meSpongebob.Position = new TimeSpan(0);
         }
     }
 }

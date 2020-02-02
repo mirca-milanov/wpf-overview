@@ -51,5 +51,10 @@ namespace WpfOverview
             counter++;
             tbCounter.Text = counter.ToString();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            meSpongebob.Position = new TimeSpan(0);
+        }
     }
 }

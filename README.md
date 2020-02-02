@@ -6,8 +6,6 @@
   * Input
   * Media
   * Container
-  * Shapes
-  * Miscellaneous
 * Panels
   * Canvas
   * StackPanel
@@ -15,8 +13,8 @@
   * Grid
   * Dock
 * Data
-  * Data Binding
   * Resources
+  * Data Binding
   * ContentControl
   * ItemsControl
   * DataContext
@@ -25,35 +23,35 @@
 * Transform
   * LayoutTransform
   * RenderTransform
+* Property
+  * DependencyProperty
+  * AttachedProperty
 * Triggers
 * Events
 * Animations
 * Architecture
   * Tree
   * Object Hierarchy
-* Property
-  * DependencyProperty
-  * AttachedProperty
 * Template
   * DataTemplate
   * ControlTemplate
+* Collection Controls
 * Windows
   * Window
   * Dialog
   * App.xaml
 * Dependency Injection - Autofac
-* Command Design Pattern
-* INotifyPropertyChanged
-* ObservableCollection
-* Collection Controls
-* Hotkeys
-  * Access Keys
-  * Key Bindings
 * Value Converters
 * Validation
 * MVVM
+  * Commands
+  * INotifyPropertyChanged
+  * ObservableCollection
   * Classic MVVM
   * Prism Framework MVVM
+* Hotkeys
+  * Access Keys
+  * Key Bindings
 * Long running tasks
   * Dispatcher
   * BackgroundWorker

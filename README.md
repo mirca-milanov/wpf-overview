@@ -19,26 +19,31 @@
   * ItemsControl
   * DataContext
   * ItemsSource
-* Style
-* Transform
-  * LayoutTransform
-  * RenderTransform
+* Design
+  * Style
+  * Transform
+  * Triggers
+  * Events
+  * Animations
 * Property
   * DependencyProperty
   * AttachedProperty
-* Triggers
-* Events
-* Animations
 * Architecture
-  * Tree
+  * Visual & Logical Tree
   * Object Hierarchy
 * Template
   * DataTemplate
   * ControlTemplate
 * Collection Controls
+  * ItemsControl
+  * ListBox
+  * ListView
+  * TreeView
+  * DataGrid
+  * Sorting Data
 * Windows
-  * Window
-  * Dialog
+  * Windows
+  * Dialogs
   * App.xaml
 * Dependency Injection - Autofac
 * Value Converters
@@ -54,14 +59,16 @@
   * Key Bindings
 * Long running tasks
   * Dispatcher
+  * DispatcherTimer
   * BackgroundWorker
   * Task parallel library
   * REST client
   * Database client
   * File transfer
   * Shapes drawing
-* UserControl
-* CustomControl
+* Custom Controls
+  * UserControl
+  * CustomControl
 * Localization
 * Deployment
   * MSI

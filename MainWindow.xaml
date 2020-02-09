@@ -135,6 +135,39 @@
                     </WrapPanel>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Data">
+                <StackPanel x:Name="spData">
+                    <StackPanel.Resources>
+                        <SolidColorBrush x:Key="rColor">
+                            <SolidColorBrush.Color>Teal</SolidColorBrush.Color>
+                        </SolidColorBrush>
+                        <SolidColorBrush x:Key="drColor" Color="Red"/>
+                    </StackPanel.Resources>
+                    <TextBlock>Resources:</TextBlock>
+                    <TextBlock Foreground="{StaticResource rColor}">Text color is from static resource</TextBlock>
+                    <TextBlock Foreground="{DynamicResource drColor}">Text color is from dynamic resource, changes based on checkbox</TextBlock>
+                    <CheckBox IsChecked="False" IsThreeState="False" Content="Checked - Blue, Unchecked - Red" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    <TextBlock>DataContext Data Binding:</TextBlock>
+                    <TextBox Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="{Binding FullName, Mode=OneWay}"/>
+                    <TextBlock Text="Element Data Binding:"/>
+                    <TextBlock Text="{Binding ElementName=spData, Path=Children.Count}"/>
+                    <TextBlock Text="Relative Element Data Binding:"/>
+                    <Label>
+                        <WrapPanel>
+                            <TextBlock>My width: </TextBlock>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"/>
+                        </WrapPanel>
+                    </Label>
+                    <Label>
+                        <WrapPanel>
+                            <TextBlock>Window width:</TextBlock>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}, AncestorLevel=1}, Path=ActualWidth}"/>
+                        </WrapPanel>
+                    </Label>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

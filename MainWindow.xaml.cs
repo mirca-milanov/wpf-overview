@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfOverview.Models;
 
 namespace WpfOverview
 {
@@ -24,6 +25,7 @@ namespace WpfOverview
         public MainWindow()
         {
             InitializeComponent();
+            spData.DataContext = new Person() { FirstName = "Will", LastName = "Smith" };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,6 +57,16 @@ namespace WpfOverview
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //meSpongebob.Position = new TimeSpan(0);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            spData.Resources["drColor"] = Brushes.Blue;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            spData.Resources["drColor"] = Brushes.Red;
         }
     }
 }

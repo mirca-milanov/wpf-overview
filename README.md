@@ -19,7 +19,7 @@
   * ItemsControl
   * DataContext
   * ItemsSource
-* Design
+* Designing
   * Style
   * Transform
   * Triggers

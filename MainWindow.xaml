@@ -135,7 +135,7 @@
                     </WrapPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Data">
+            <TabItem Header="Data:">
                 <StackPanel x:Name="spData">
                     <StackPanel.Resources>
                         <SolidColorBrush x:Key="rColor">
@@ -166,6 +166,88 @@
                             <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}, AncestorLevel=1}, Path=ActualWidth}"/>
                         </WrapPanel>
                     </Label>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Designing:">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" x:Key="rBtnHover">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.Setters>
+                                        <Setter Property="FontWeight" Value="ExtraBold"/>
+                                    </Trigger.Setters>
+                                </Trigger>
+                                <DataTrigger Binding="{Binding ElementName=cbRedText, Path=IsChecked}" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Style:"/>
+                    <Button Content="Button with thick border">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="BorderThickness" Value="5"/>
+                                <Setter Property="BorderBrush" Value="Teal"/>
+                                <Setter Property="Padding" Value="10"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Text="Trigger:"/>
+                    <Button Content="Text bold on hover." Style="{StaticResource rBtnHover}"/>
+                    <CheckBox x:Name="cbRedText" IsChecked="False" Content="Text red on checked"/>
+                    <TextBlock Text="Transforms:"/>
+                    <Rectangle Width="100" Height="20" HorizontalAlignment="Left">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="Red" Opacity="0.5"/>
+                        </Rectangle.Fill>
+                        <Rectangle.RenderTransform>
+                            <ScaleTransform ScaleX="3" ScaleY="3"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="100" Height="20" Fill="Aqua" HorizontalAlignment="Left">
+                        <Rectangle.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </Rectangle.LayoutTransform>
+                    </Rectangle>
+                    <TextBlock Text="Events:"/>
+                    <Button Content="Right click for event messages" MouseDown="Button_MouseDown"/>
+                    <TextBlock Text="Animations:"/>
+                    <Button MinWidth="200" Content="Click to increase width" HorizontalAlignment="Left">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Orange"/>
+                                <Setter Property="Padding" Value="0 10 5 15"/>
+
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:1" From="200" To="400" Storyboard.TargetProperty="(Button.MinWidth)"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Ellipse Width="50" Height="50" StrokeThickness="5" Stroke="Red" StrokeDashArray="1">
+                        <Ellipse.RenderTransform>
+                            <RotateTransform Angle="0" CenterX="25" CenterY="25"/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0" To="360" Duration="0:0:3" RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Ellipse.Triggers>
+                    </Ellipse>
                 </StackPanel>
             </TabItem>
         </TabControl>

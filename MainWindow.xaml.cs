@@ -68,5 +68,10 @@ namespace WpfOverview
         {
             spData.Resources["drColor"] = Brushes.Red;
         }
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show($"{e.RoutedEvent.RoutingStrategy.ToString()} - Routing Strategy.");
+            MessageBox.Show("Button down.");
+        }
     }
 }

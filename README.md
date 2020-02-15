@@ -74,3 +74,11 @@
   * MSI
   * Squirrel
   * Wix
+## Additional Notes:
+Something & PreviewSomething for Bubble & Tunnel event variation names.
+
+Binding: DataContext, Element, Relative
+
+Trigger: Property, Data, Event
+
+Animation: EventTrigger, Actions, BeginStoryboard, StoryBoard, DoubleAnimation, TargetProperty

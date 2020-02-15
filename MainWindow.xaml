@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOverview"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" x:Name="wMain">
     <StackPanel>
         <TabControl>
             <TabItem Header="Basic Controls:">
@@ -248,6 +248,13 @@
                             </EventTrigger>
                         </Ellipse.Triggers>
                     </Ellipse>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Property:">
+                <StackPanel>
+                    <TextBlock Text="Dependency Property:"/>
+                    <TextBox Text="{Binding ElementName=wMain, Path=MyProperty, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="{Binding ElementName=wMain, Path=MyProperty}"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

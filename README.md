@@ -82,3 +82,7 @@ Binding: DataContext, Element, Relative
 Trigger: Property, Data, Event
 
 Animation: EventTrigger, Actions, BeginStoryboard, StoryBoard, DoubleAnimation, TargetProperty
+
+Dependency Property: DependencyObject, propdb snippet, GetValue & SetVale methods, built in validation, data binding, animation
+
+Attached Property: propa snippet, used in descendant controls, example Grid.Row=2

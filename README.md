@@ -86,3 +86,5 @@ Animation: EventTrigger, Actions, BeginStoryboard, StoryBoard, DoubleAnimation, 
 Dependency Property: DependencyObject, propdb snippet, GetValue & SetVale methods, built in validation, data binding, animation
 
 Attached Property: propa snippet, used in descendant controls, example Grid.Row=2
+
+Object Hierarchy: DispatcherObject, DependencyObject, Visual, UIElement, FrameworkElement, Control, ItemsControl, ContentControl

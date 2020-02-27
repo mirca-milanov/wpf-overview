@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,11 @@ namespace WpfOverview
         {
             InitializeComponent();
             spData.DataContext = new Person() { FirstName = "Will", LastName = "Smith" };
+            ObservableCollection<Person> people = new ObservableCollection<Person>() {};
+            dgPeople.ItemsSource = people;
+            people.Add(new Person() { FirstName = "Will", LastName = "Smith" });
+            people.Add(new Person() { FirstName = "Will2", LastName = "Smith2" });
+            people.Add(new Person() { FirstName = "Will3", LastName = "Smith3" });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,7 +60,7 @@ namespace WpfOverview
             tbCounter.Text = counter.ToString();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void MoveVideoToStart(object sender, RoutedEventArgs e)
         {
             //meSpongebob.Position = new TimeSpan(0);
         }

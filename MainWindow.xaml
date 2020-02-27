@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOverview"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" x:Name="wMain">
     <StackPanel>
+        <StackPanel.Resources>
+        </StackPanel.Resources>
         <TabControl>
             <TabItem Header="Basic Controls:">
                 <Grid>
@@ -59,7 +62,7 @@
                         <TextBlock Text="Media Controls:"/>
                         <Image Source="Media/Bitmap1.bmp"/>
                         <!--<MediaElement x:Name="meSpongebob"  Source="C:\Users\User\source\repos\WpfOverview\Media\spongebob.mp4" Width="100" Height="100" LoadedBehavior="Play" Volume="1"/>-->
-                        <Button Content="Replay!" Click="Button_Click_1"/>
+                        <Button Content="Replay!" Click="MoveVideoToStart"/>
                     </StackPanel>
                     <StackPanel Grid.Column="4">
                         <TextBlock Text="Container Controls:"/>
@@ -156,7 +159,7 @@
                     <TextBlock Text="Relative Element Data Binding:"/>
                     <Label>
                         <WrapPanel>
-                            <TextBlock>My width: </TextBlock>
+                            <TextBlock>My width:</TextBlock>
                             <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"/>
                         </WrapPanel>
                     </Label>
@@ -255,6 +258,180 @@
                     <TextBlock Text="Dependency Property:"/>
                     <TextBox Text="{Binding ElementName=wMain, Path=MyProperty, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock Text="{Binding ElementName=wMain, Path=MyProperty}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Templates:">
+                <StackPanel>
+                    <TextBlock>DataTemplate:</TextBlock>
+                    <Label>
+                        <Label.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="FirstName"/>
+                                    <TextBlock Text="LastName"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Label.ContentTemplate>
+                    </Label>
+                    <ItemsControl>
+                        <ItemsControl.Items>
+                            <system:String>a</system:String>
+                            <system:String>b</system:String>
+                            <system:String>c</system:String>
+                        </ItemsControl.Items>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding}" Foreground="Red" FontWeight="Bold" FontSize="20"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock>ControlTemplate:</TextBlock>
+                    <Label>
+                        <Label.Content>
+                            Hello everyone!
+                        </Label.Content>
+                        <Label.Template>
+                            <ControlTemplate TargetType="Label">
+                                <StackPanel>
+                                    <Border BorderBrush="Black" BorderThickness="3" Padding="5">
+                                        <!--ContentPresenter & ItemsPresenter-->
+                                        <ContentPresenter />
+                                    </Border>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Label.Template>
+                    </Label>
+                    <Button Content="Don't click me">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderBrush="Orange" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness}">
+                                    <ContentPresenter/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Content="Custom Button" Style="{DynamicResource ButtonStyle1}">
+                        <Button.Resources>
+                            <Style x:Key="FocusVisual">
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+                            <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+                            <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Red"/>
+                            <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+                            <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+                            <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+                            <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+                            <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+                            <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+                            <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+                                <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsDefaulted" Value="true">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="false">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <DataGrid x:Name="dgPeople" Style="{DynamicResource DataGridStyle1}">
+                        <DataGrid.Resources>
+                            <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+                                <Setter Property="Background" Value="#DDD"/>
+                                <Setter Property="Foreground" Value="#333"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+                                <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGrid}">
+                                            <Border BorderBrush="#333" BorderThickness="{TemplateBinding BorderThickness}" Background="#ddd" Padding="5" SnapsToDevicePixels="True" Margin="3">
+                                                <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                                                    <ScrollViewer.Template>
+                                                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                    <RowDefinition Height="*"/>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Button Command="{x:Static DataGrid.SelectAllCommand}" Margin="10" Focusable="false" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                                <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" Grid.ColumnSpan="2" Grid.Row="1"/>
+                                                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
+                                                                <Grid Grid.Column="1" Grid.Row="2">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </ScrollViewer.Template>
+                                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                </ScrollViewer>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsGrouping" Value="true"/>
+                                            <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
                 </StackPanel>
             </TabItem>
         </TabControl>

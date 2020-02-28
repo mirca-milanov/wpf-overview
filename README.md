@@ -94,3 +94,5 @@ ControlTemplate: ContentPresenter & ItemsPresenter, \{TemplateBinding Background
 ListView: ListViewItem or ListView.View > GridView, GridView.Columns, GridViewColumn (Header & DisplayMemberBinding=\{Binding FirstName}), CellTemplate
 
 DataGrid: DataGrid.Columns, DataGridText/Template/CheckBox/ComboBox/HyperlinkColumn, CellTemplate, AutoGenerateColumns
+
+Sorting, Filtering & Grouping : CollectionView, CollectionViewSource, CollectionViewSource.GetDefaultView(dataGrid.ItemsSource), SortDescription, Filter predictate, GroupDescription

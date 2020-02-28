@@ -27,11 +27,24 @@ namespace WpfOverview
         {
             InitializeComponent();
             spData.DataContext = new Person() { FirstName = "Will", LastName = "Smith" };
-            ObservableCollection<Person> people = new ObservableCollection<Person>() {};
+            ObservableCollection<Person> people = new ObservableCollection<Person>() { };
             dgPeople.ItemsSource = people;
+            dgPeople2.ItemsSource = people;
+
             people.Add(new Person() { FirstName = "Will", LastName = "Smith" });
             people.Add(new Person() { FirstName = "Will2", LastName = "Smith2" });
             people.Add(new Person() { FirstName = "Will3", LastName = "Smith3" });
+
+            ObservableCollection<SuperPerson> superPeople = new ObservableCollection<SuperPerson>() { };
+            dgOrganized.ItemsSource = superPeople;
+            superPeople.Add(new SuperPerson("John", "Doe", 42, true));
+            superPeople.Add(new SuperPerson("Josh", "Billy", 812, false));
+            superPeople.Add(new SuperPerson("Janny", "Johnsy", 52, false));
+            superPeople.Add(new SuperPerson("Jill", "Ariel", 22, true));
+
+
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -91,6 +104,51 @@ namespace WpfOverview
         public static readonly DependencyProperty MyPropertyProperty =
             DependencyProperty.Register("MyProperty", typeof(int), typeof(MainWindow), new PropertyMetadata(200));
 
+        private void lbPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbSelectedLb.Text = "Selected listbox item: " + (e.AddedItems[0] as Person).ToString();
+        }
 
+        private void cbSortBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selected = (e.AddedItems[0] as string);
+            if (selected != "None")
+            {
+                CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
+                cw.SortDescriptions.Clear();
+                cw.SortDescriptions.Add(new System.ComponentModel.SortDescription(selected, System.ComponentModel.ListSortDirection.Ascending));
+            }
+        }
+
+        private void StackPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            string selected = (e.OriginalSource as RadioButton).Content as String;
+            CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
+            
+            switch (selected)
+            {
+                case "Is alive":
+                    cw.Filter = (o) => ((SuperPerson)o).IsAlive;
+                    break;
+                case "Is dead":
+                    cw.Filter = (o) => !((SuperPerson)o).IsAlive;
+                    break;
+                default:
+                    cw.Filter = o => true;
+                    break;
+            }
+        }
+
+        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        {
+            CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
+            cw.GroupDescriptions.Add(new PropertyGroupDescription("IsAlive"));
+        }
+
+        private void CheckBox_Unchecked_1(object sender, RoutedEventArgs e)
+        {
+            CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
+            cw.GroupDescriptions.Clear();
+        }
     }
 }

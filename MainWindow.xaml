@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOverview"
+        xmlns:models="clr-namespace:WpfOverview.Models"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" x:Name="wMain">
+        Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain">
     <StackPanel>
         <StackPanel.Resources>
         </StackPanel.Resources>
@@ -432,6 +433,86 @@
                             </Style>
                         </DataGrid.Resources>
                     </DataGrid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Collections:">
+                <StackPanel>
+                    <TextBlock Text="ItemsControl:"/>
+                    <ItemsControl>
+                        <models:Person FirstName="Will" LastName="Smith"/>
+                        <models:Person FirstName="Bill" LastName="Notsmith"/>
+                        <models:Person FirstName="Jenny" LastName="Penny"/>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="ListBox. Select some:"/>
+                    <ListBox x:Name="lbPeople" SelectionChanged="lbPeople_SelectionChanged">
+                        <models:Person FirstName="Will" LastName="Smith"/>
+                        <models:Person FirstName="Bill" LastName="Notsmith"/>
+                        <models:Person FirstName="Jenny" LastName="Penny"/>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                    <TextBlock x:Name="tbSelectedLb" Text="Selected listbox item:"/>
+                    <TextBlock Text="LisstView:"/>
+                    <ListView>
+                        <models:Person FirstName="Will" LastName="Smith"/>
+                        <models:Person FirstName="Bill" LastName="Notsmith"/>
+                        <models:Person FirstName="Jenny" LastName="Penny"/>
+                        <ListView.View>
+                            <GridView >
+                                <GridView.Columns>
+                                    <GridViewColumn Header="First name:" DisplayMemberBinding="{Binding FirstName}"/>
+                                    <GridViewColumn Header="Last name:" DisplayMemberBinding="{Binding LastName}"/>
+                                    <GridViewColumn Header="Full name:" DisplayMemberBinding="{Binding FullName}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Text="DataGrid:"/>
+                    <DataGrid x:Name="dgPeople2" AutoGenerateColumns="False" CanUserSortColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="First name:" CanUserSort="True" SortDirection="Descending">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FirstName}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="Sorting, Filtering &amp; Grouping:"/>
+                    <DataGrid x:Name="dgOrganized">
+                    </DataGrid>
+                    <TextBlock Text="Sort By:"/>
+                    <ComboBox x:Name="cbSortBy" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="cbSortBy_SelectionChanged">
+                        <system:String>None</system:String>
+                        <system:String>FirstName</system:String>
+                        <system:String>LastName</system:String>
+                    </ComboBox>
+                    <CheckBox Content="Group by 'alive' status" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_1"/>
+                    <TextBlock Text="Filter By:"/>
+                    <GroupBox>
+                        <StackPanel ToggleButton.Checked="StackPanel_Checked">
+                            <RadioButton Content="None" GroupName="filter"/>
+                            <RadioButton Content="Is alive" GroupName="filter"/>
+                            <RadioButton Content="Is dead" GroupName="filter"/>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
             </TabItem>
         </TabControl>

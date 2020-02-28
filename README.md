@@ -36,15 +36,15 @@
   * ControlTemplate
 * Collection Controls
   * ItemsControl
+  * ComboBox
   * ListBox
   * ListView
   * TreeView
   * DataGrid
-  * Sorting Data
+  * Sorting, filtering & grouping data
 * Windows
   * Windows
   * Dialogs
-  * App.xaml
 * Dependency Injection - Autofac
 * Value Converters
 * Validation
@@ -88,3 +88,9 @@ Dependency Property: DependencyObject, propdb snippet, GetValue & SetVale method
 Attached Property: propa snippet, used in descendant controls, example Grid.Row=2
 
 Object Hierarchy: DispatcherObject, DependencyObject, Visual, UIElement, FrameworkElement, Control, ItemsControl, ContentControl
+
+ControlTemplate: ContentPresenter & ItemsPresenter, \{TemplateBinding Background} & RelativeSource=\{RelativeSource TemplatedParent}
+
+ListView: ListViewItem or ListView.View > GridView, GridView.Columns, GridViewColumn (Header & DisplayMemberBinding=\{Binding FirstName}), CellTemplate
+
+DataGrid: DataGrid.Columns, DataGridText/Template/CheckBox/ComboBox/HyperlinkColumn, CellTemplate, AutoGenerateColumns

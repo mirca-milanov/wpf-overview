@@ -29,6 +29,8 @@ namespace WpfOverview
             spData.DataContext = new Person() { FirstName = "Will", LastName = "Smith" };
             ObservableCollection<Person> people = new ObservableCollection<Person>() {};
             dgPeople.ItemsSource = people;
+            dgPeople2.ItemsSource = people;
+
             people.Add(new Person() { FirstName = "Will", LastName = "Smith" });
             people.Add(new Person() { FirstName = "Will2", LastName = "Smith2" });
             people.Add(new Person() { FirstName = "Will3", LastName = "Smith3" });
@@ -91,6 +93,9 @@ namespace WpfOverview
         public static readonly DependencyProperty MyPropertyProperty =
             DependencyProperty.Register("MyProperty", typeof(int), typeof(MainWindow), new PropertyMetadata(200));
 
-
+        private void lbPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbSelectedLb.Text = "Selected listbox item: " + (e.AddedItems[0] as Person).ToString();
+        }
     }
 }

@@ -45,5 +45,6 @@ namespace WpfOverview.Models
             }
         }
         public string FullName => $"{FirstName} {LastName}";
+        public override string ToString() => FullName;
     }
 }

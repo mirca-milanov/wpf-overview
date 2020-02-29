@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfOverview"
         xmlns:models="clr-namespace:WpfOverview.Models"
+        xmlns:converters="clr-namespace:WpfOverview.Converters"
+        
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain">
     <StackPanel>
         <StackPanel.Resources>
+            <converters:AliveStatusConverter x:Key="converterAliveStatus"/>
         </StackPanel.Resources>
         <TabControl>
             <TabItem Header="Basic Controls:">
@@ -524,7 +527,16 @@
                     <TextBlock x:Name="tbMessageBoxResult" Text="Message box result:"/>
                     <Button Content="Save file:" Click="Button_Click_3"/>
                     <TextBlock x:Name="tbSaveFileResult" Text="Save file result: "/>
-
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Converters:">
+                <StackPanel>
+                    <StackPanel.DataContext>
+                        <models:SuperPerson Age="50" FirstName="Josh" LastName="Smith" IsAlive="True"/>
+                    </StackPanel.DataContext>
+                    <TextBlock Text="Change checkbox value"/>
+                    <TextBlock Text="{Binding Path=IsAlive, Converter={StaticResource converterAliveStatus}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox IsChecked="{Binding Path=IsAlive, UpdateSourceTrigger=PropertyChanged}" Content="Person is alive"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

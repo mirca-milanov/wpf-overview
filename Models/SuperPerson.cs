@@ -10,6 +10,10 @@ namespace WpfOverview.Models
 {
     class SuperPerson : INotifyPropertyChanged
     {
+        public SuperPerson()
+        {
+
+        }
         public SuperPerson(string first, string last, int age, bool isAlive)
         {
             FirstName = first;

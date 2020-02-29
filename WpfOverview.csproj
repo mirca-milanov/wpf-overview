@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\AliveStatusConverter.cs" />
     <Compile Include="Views\RandowWindow.xaml.cs">
       <DependentUpon>RandowWindow.xaml</DependentUpon>
     </Compile>

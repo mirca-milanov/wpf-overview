@@ -48,6 +48,11 @@ This project is meant to cover every major topic of WPF framework.
   * Dialogs
 * Value Converters
 * Validation
+  * Exception Validation
+  * ValidationRule
+  * IDataErrorInfo
+  * Annotation Validation
+  * INotifyDataErrorInfo
 * MVVM
   * Commands
   * INotifyPropertyChanged

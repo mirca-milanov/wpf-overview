@@ -9,10 +9,11 @@
         
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain">
+        Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain" WindowState="Maximized">
     <StackPanel>
         <StackPanel.Resources>
             <converters:AliveStatusConverter x:Key="converterAliveStatus"/>
+            <BooleanToVisibilityConverter x:Key="converterBooleanToVisibility"/>
         </StackPanel.Resources>
         <TabControl>
             <TabItem Header="Basic Controls:">
@@ -537,6 +538,19 @@
                     <TextBlock Text="Change checkbox value"/>
                     <TextBlock Text="{Binding Path=IsAlive, Converter={StaticResource converterAliveStatus}, UpdateSourceTrigger=PropertyChanged}"/>
                     <CheckBox IsChecked="{Binding Path=IsAlive, UpdateSourceTrigger=PropertyChanged}" Content="Person is alive"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Validation:">
+                <StackPanel>
+                    <StackPanel.DataContext>
+                        <models:ValidationModel/>
+                    </StackPanel.DataContext>
+                    <TextBlock Text="Exception Validation, no longer than 10 characters:"/>
+                    <TextBox x:Name="tbValidationException" Text="{Binding Path=SomeName, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                    <TextBlock Text="Has error:"/>
+                    <TextBlock Text="{Binding ElementName=tbValidationException, Path=(Validation.HasError)}"/>
+                    <TextBlock Visibility="{Binding ElementName=tbValidationException,Path=(Validation.HasError), Converter={StaticResource converterBooleanToVisibility}}" Text="{Binding ElementName=tbValidationException, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBlock Text="{Binding Path=SomeName}"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

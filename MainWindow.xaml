@@ -517,7 +517,14 @@
             </TabItem>
             <TabItem Header="Windows &amp; Dialogs:">
                 <StackPanel>
+                    <TextBlock Text="Windows:"/>
                     <Button Content="Open window" Click="Button_Click_1"/>
+                    <TextBlock Text="Dialogs:"/>
+                    <Button Content="Message box 1" Click="Button_Click_2"/>
+                    <TextBlock x:Name="tbMessageBoxResult" Text="Message box result:"/>
+                    <Button Content="Save file:" Click="Button_Click_3"/>
+                    <TextBlock x:Name="tbSaveFileResult" Text="Save file result: "/>
+
                 </StackPanel>
             </TabItem>
         </TabControl>

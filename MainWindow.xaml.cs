@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfOverview.Models;
+using WpfOverview.Views;
 
 namespace WpfOverview
 {
@@ -149,6 +150,12 @@ namespace WpfOverview
         {
             CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
             cw.GroupDescriptions.Clear();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RandomWindow rw = new RandomWindow();
+            rw.Show();
         }
     }
 }

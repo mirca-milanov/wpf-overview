@@ -515,6 +515,11 @@
                     </GroupBox>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Windows &amp; Dialogs:">
+                <StackPanel>
+                    <Button Content="Open window" Click="Button_Click_1"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

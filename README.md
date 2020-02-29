@@ -1,4 +1,5 @@
 # WPF Overview
+This project is meant to cover every major topic of WPF framework.
 ## Topics Covered:
 * Controls
   * Text
@@ -45,15 +46,13 @@
 * Windows
   * Windows
   * Dialogs
-* Dependency Injection - Autofac
 * Value Converters
 * Validation
 * MVVM
   * Commands
   * INotifyPropertyChanged
   * ObservableCollection
-  * Classic MVVM
-  * Prism Framework MVVM
+  * View & ViewModel
 * Hotkeys
   * Access Keys
   * Key Bindings
@@ -61,11 +60,10 @@
   * Dispatcher
   * DispatcherTimer
   * BackgroundWorker
-  * Task parallel library
-  * REST client
-  * Database client
-  * File transfer
-  * Shapes drawing
+  * TPL
+  * REST Client
+  * Database Client
+  * Canvas Drawing
 * Custom Controls
   * UserControl
   * CustomControl

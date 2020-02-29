@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfOverview.Models;
+using WpfOverview.Views;
 
 namespace WpfOverview
 {
@@ -124,7 +126,7 @@ namespace WpfOverview
         {
             string selected = (e.OriginalSource as RadioButton).Content as String;
             CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
-            
+
             switch (selected)
             {
                 case "Is alive":
@@ -149,6 +151,28 @@ namespace WpfOverview
         {
             CollectionView cw = (CollectionView)CollectionViewSource.GetDefaultView(dgOrganized.ItemsSource);
             cw.GroupDescriptions.Clear();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RandomWindow rw = new RandomWindow();
+            rw.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var mbr = MessageBox.Show("Basic message box", "Caption", MessageBoxButton.YesNoCancel);
+            tbMessageBoxResult.Text = "Message box result: " + mbr;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var sfd = new SaveFileDialog();
+            
+            if (sfd.ShowDialog() == true)
+            {
+                tbSaveFileResult.Text = sfd.FileName;
+            }
         }
     }
 }

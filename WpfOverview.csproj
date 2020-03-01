@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\AliveStatusConverter.cs" />
+    <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Views\RandowWindow.xaml.cs">
       <DependentUpon>RandowWindow.xaml</DependentUpon>
     </Compile>

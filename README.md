@@ -78,7 +78,7 @@ This project is meant to cover every major topic of WPF framework.
   * Squirrel
   * Wix
 ## Additional Notes:
-Something & PreviewSomething for Bubble & Tunnel event variation names.
+Something & PreviewSomething for Bubble & Tunnel event variation names
 
 Binding: DataContext, Element, Relative
 
@@ -99,3 +99,20 @@ ListView: ListViewItem or ListView.View > GridView, GridView.Columns, GridViewCo
 DataGrid: DataGrid.Columns, DataGridText/Template/CheckBox/ComboBox/HyperlinkColumn, CellTemplate, AutoGenerateColumns
 
 Sorting, Filtering & Grouping : CollectionView, CollectionViewSource, CollectionViewSource.GetDefaultView(dataGrid.ItemsSource), SortDescription, Filter predictate, GroupDescription
+
+Validation: TextBlock visibility with binding path to (Validation.HasError) & BooleanToVisibilityConverter
+
+(Validation.Errors)[0].ErrorContent to display error message
+
+When Binding there are additional properties, that we need to set if validation is used
+
+INotifyDataErrorInfo: Beyond HasErrors, GetErrors & ErrorsChanged, we need to add custom Validation method, that takes property name & setter value as parameters & Dictionary<string, List\<string>> errors, which container every error in model, and where each key is property name. Doing it some other way, has high chance of exceptions
+
+HasErrors returns true if any key in dictionary has one or more errors
+
+GetErrors returns list from dictionary based on key/property name
+
+CustomValidation method takes property name & setter value as parameters. Removes key for that property from errors. List\<ValidationResult> containers potential new errors. Validator.TryValidateProperty(value, new ValidationContext(this){MemberName = propertyName}, validationResult). After that if validationResult list has errors, add ErrorMessage property to dictionary using Linq.ForEach
+
+Xaml TextBox that is getting validated needs to have properties: NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True. ItemsControl showing errors should use (Validation.HasError) & (Validation.Errors) for ItemsSource, ErrorContent for DataTemplate
+

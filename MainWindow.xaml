@@ -551,6 +551,19 @@
                     <TextBlock Text="{Binding ElementName=tbValidationException, Path=(Validation.HasError)}"/>
                     <TextBlock Visibility="{Binding ElementName=tbValidationException,Path=(Validation.HasError), Converter={StaticResource converterBooleanToVisibility}}" Text="{Binding ElementName=tbValidationException, Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock Text="{Binding Path=SomeName}"/>
+                    <TextBlock Text="INotifyDataErrorInfo:"/>
+                    <TextBox x:Name="tboxNotifyValidate" Text="{Binding Path=NotifyString, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"/>
+                    <TextBlock Text="{Binding Path=NotifyString}"/>
+                    <TextBlock Text="Field has errors:"/>
+                    <TextBlock Text="{Binding ElementName=tboxNotifyValidate,Path=(Validation.HasError)}"/>
+                    <TextBlock Text="{Binding ElementName=tboxNotifyValidate, Path=(Validation.Errors).Count}"/>
+                    <ItemsControl ItemsSource="{Binding ElementName=tboxNotifyValidate, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </TabItem>
         </TabControl>

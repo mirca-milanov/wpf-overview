@@ -56,7 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\BasicCommand.cs" />
+    <Compile Include="Commands\CommandWithParameter.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\DoubleConstrainedCommand.cs" />
+    <Compile Include="Commands\RoutedContainerCommands.cs" />
     <Compile Include="Converters\AliveStatusConverter.cs" />
+    <Compile Include="Models\DelegateCommandModel.cs" />
     <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Views\RandowWindow.xaml.cs">
       <DependentUpon>RandowWindow.xaml</DependentUpon>

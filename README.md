@@ -116,3 +116,4 @@ CustomValidation method takes property name & setter value as parameters. Remove
 
 Xaml TextBox that is getting validated needs to have properties: NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True. ItemsControl showing errors should use (Validation.HasError) & (Validation.Errors) for ItemsSource, ErrorContent for DataTemplate
 
+Routed Command: Static type that contains public, static, readonly fields of RoutedCommand type. In XAML, container like Window or StackPanel have InputBindings & CommandBindings. Input needs command & key combination, CommandBinding needs same command, and execute & canexecute event handlers. Down the logical tree we can have button that has same command. CommandTarget property is e.Source in EventHandler's event args and needs to be set with Binding & ElementName

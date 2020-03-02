@@ -174,5 +174,15 @@ namespace WpfOverview
                 tbSaveFileResult.Text = sfd.FileName;
             }
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Routed command's hello.");
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

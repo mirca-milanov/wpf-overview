@@ -623,6 +623,20 @@
                     <views:AllUsersView/>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Delayed UI Update">
+                <StackPanel>
+                    <Button Content="Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_4"/>
+                    <TextBlock x:Name="tboxFreezeThread" Text="Text"/>
+                    <Button Content="Thread Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_5"/>
+                    <TextBlock x:Name="tboxDontFreezeThread" Text="Text"/>
+                    <Button Content="Task Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_6"/>
+                    <TextBlock x:Name="tboxDontFreezeTask" Text="Text"/>
+                    <Button Content="Task 2 Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_7"/>
+                    <TextBlock x:Name="tboxDontFreezeTask2" Text="Text"/>
+                    <Button Content="BackgroundWorker Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_8"/>
+                    <TextBlock x:Name="tboxDontFreezeBW" Text="Text"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

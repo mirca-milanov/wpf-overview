@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -168,7 +170,7 @@ namespace WpfOverview
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             var sfd = new SaveFileDialog();
-            
+
             if (sfd.ShowDialog() == true)
             {
                 tbSaveFileResult.Text = sfd.FileName;
@@ -183,6 +185,47 @@ namespace WpfOverview
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Thread.Sleep(5000);
+            tboxFreezeThread.Text = new Random().NextDouble().ToString();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            new Thread(() =>
+            {
+                Thread.Sleep(5000);
+                tboxDontFreezeThread.Dispatcher.Invoke(() => tboxDontFreezeThread.Text = new Random().NextDouble().ToString());
+            }).Start();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(5000);
+                tboxDontFreezeTask.Dispatcher.Invoke(() => tboxDontFreezeTask.Text = new Random().NextDouble().ToString());
+            });
+        }
+
+        private async void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(5000);
+            tboxDontFreezeTask2.Dispatcher.Invoke(() => tboxDontFreezeTask2.Text = new Random().NextDouble().ToString());
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (o, ea) =>
+            {
+                Thread.Sleep(5000);
+                tboxDontFreezeBW.Dispatcher.Invoke(() => tboxDontFreezeBW.Text = new Random().NextDouble().ToString());
+            };
+            bw.RunWorkerAsync();
         }
     }
 }

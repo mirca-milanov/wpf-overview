@@ -62,9 +62,10 @@ This project is meant to cover every major topic of WPF framework.
   * Access Keys
   * Key Bindings
 * Long running tasks
+  * Delayed UI Update
   * REST Client
   * Database Client
-  * Canvas Drawing
+  * Canvas Draw
 * Custom Controls
   * UserControl
   * CustomControl
@@ -119,3 +120,5 @@ ViewModels Communication: ViewModelA needs to send data to ViewModelB. This can 
 ViewModels Communication Example: ViewA creates Book instance, ViewB shows all books. ViewA can create book and with Mediator send it to ViewB. ViewB has set Action for Mediator, that is going to be performed when Book is sent
 
 ViewModels & DelegateCommands: DelegateCommands work well with ViewModels, because they can access properties of that ViewModel. Set DelegateCommand instance in ViewModel constructor, so that it can access object properties
+
+Delayed UI Update: Thread, Asynchronous method, Method calling Task, BackgroundWorker instance

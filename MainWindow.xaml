@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WpfOverview"
         xmlns:models="clr-namespace:WpfOverview.Models"
         xmlns:converters="clr-namespace:WpfOverview.Converters"
-        
+        xmlns:commands="clr-namespace:WpfOverview.Commands"        
+        xmlns:views="clr-namespace:WpfOverview.Views"    
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain" WindowState="Maximized">
@@ -564,6 +565,62 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Commands:">
+                <StackPanel>
+                    <StackPanel.CommandBindings>
+
+                    </StackPanel.CommandBindings>
+                    <TextBlock Text="Basic command:"/>
+                    <Button Content="Command" Command="{Binding}">
+                        <Button.DataContext>
+                            <commands:BasicCommand/>
+                        </Button.DataContext>
+                    </Button>
+                    <TextBlock Text="Built in command:"/>
+                    <Button Command="ApplicationCommands.Copy" Content="Copy" CommandTarget="{Binding ElementName=tboxToCopy}"/>
+                    <TextBox x:Name="tboxToCopy" Text="Select this to copy it."/>
+                    <Button Command="{Binding}">
+                        <Button.DataContext>
+                            <commands:DoubleConstrainedCommand/>
+                        </Button.DataContext>
+                        <Button.Content>
+                            <WrapPanel>
+                                <TextBlock Text="Double:"/>
+                                <TextBlock Text="{Binding Path=Number, Mode=OneWay}"/>
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Content="Print input text length" Command="{Binding}" CommandParameter="{Binding ElementName=tboxInputLength, Path=Text}">
+                        <Button.DataContext>
+                            <commands:CommandWithParameter/>
+                        </Button.DataContext>
+                    </Button>
+                    <TextBox x:Name="tboxInputLength" Text="Input length"/>
+                    <TextBlock Text="Delegate command:"/>
+                    <Button Content="Print stuff." Command="{Binding Path=PrintStuff}">
+                        <Button.DataContext>
+                            <models:DelegateCommandModel/>
+                        </Button.DataContext>
+                    </Button>
+                    <StackPanel>
+                        <StackPanel.InputBindings>
+                            <KeyBinding Key="A" Modifiers="Ctrl" Command="{x:Static commands:RoutedContainerCommands.SayRoutedHello}"/>
+                        </StackPanel.InputBindings>
+                        <StackPanel.CommandBindings>
+                            <CommandBinding Command="{x:Static commands:RoutedContainerCommands.SayRoutedHello}" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute"/>
+                        </StackPanel.CommandBindings>
+                        <TextBlock Text="RoutedCommand:"/>
+                        <Button Content="Click me." Command="{x:Static commands:RoutedContainerCommands.SayRoutedHello}">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="MVVM:">
+                <StackPanel>
+                    <views:AddUserView/>
+                    <views:AllUsersView/>
                 </StackPanel>
             </TabItem>
         </TabControl>

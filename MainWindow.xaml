@@ -623,7 +623,7 @@
                     <views:AllUsersView/>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Delayed UI Update">
+            <TabItem Header="Delayed UI Update:">
                 <StackPanel>
                     <Button Content="Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_4"/>
                     <TextBlock x:Name="tboxFreezeThread" Text="Text"/>
@@ -635,6 +635,13 @@
                     <TextBlock x:Name="tboxDontFreezeTask2" Text="Text"/>
                     <Button Content="BackgroundWorker Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_8"/>
                     <TextBlock x:Name="tboxDontFreezeBW" Text="Text"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Rest Client:">
+                <StackPanel>
+                    <Button Content="Get Data" Click="Button_Click_9"/>
+                    <TextBlock Text="Data from jsonplaceholder:"/>
+                    <TextBlock x:Name="tboxRestClientContainer"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

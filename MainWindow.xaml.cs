@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -226,6 +227,15 @@ namespace WpfOverview
                 tboxDontFreezeBW.Dispatcher.Invoke(() => tboxDontFreezeBW.Text = new Random().NextDouble().ToString());
             };
             bw.RunWorkerAsync();
+        }
+
+        private async void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            tboxRestClientContainer.Text = "Loading ...";
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync("https://jsonplaceholder.typicode.com/users");
+            var responseText = await response.Content.ReadAsStringAsync();
+            tboxRestClientContainer.Text = responseText;
         }
     }
 }

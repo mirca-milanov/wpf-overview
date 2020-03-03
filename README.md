@@ -62,10 +62,6 @@ This project is meant to cover every major topic of WPF framework.
   * Access Keys
   * Key Bindings
 * Long running tasks
-  * Dispatcher
-  * DispatcherTimer
-  * BackgroundWorker
-  * TPL
   * REST Client
   * Database Client
   * Canvas Drawing
@@ -112,8 +108,14 @@ HasErrors returns true if any key in dictionary has one or more errors
 
 GetErrors returns list from dictionary based on key/property name
 
-CustomValidation method takes property name & setter value as parameters. Removes key for that property from errors. List\<ValidationResult> containers potential new errors. Validator.TryValidateProperty(value, new ValidationContext(this){MemberName = propertyName}, validationResult). After that if validationResult list has errors, add ErrorMessage property to dictionary using Linq.ForEach
+CustomValidation method takes property name & setter value as parameters. Removes key for that property from errors. List\<ValidationResult> containers potential new errors. Validator.TryValidateProperty(value, new ValidationContext(this)\{MemberName = propertyName}, validationResult). After that if validationResult list has errors, add ErrorMessage property to dictionary using Linq.ForEach
 
 Xaml TextBox that is getting validated needs to have properties: NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True. ItemsControl showing errors should use (Validation.HasError) & (Validation.Errors) for ItemsSource, ErrorContent for DataTemplate
 
 Routed Command: Static type that contains public, static, readonly fields of RoutedCommand type. In XAML, container like Window or StackPanel have InputBindings & CommandBindings. Input needs command & key combination, CommandBinding needs same command, and execute & canexecute event handlers. Down the logical tree we can have button that has same command. CommandTarget property is e.Source in EventHandler's event args and needs to be set with Binding & ElementName
+
+ViewModels Communication: ViewModelA needs to send data to ViewModelB. This can be solved with Mediator Design Pattern. ViewModels share Mediator instance, or get one from it's static property. ViewModelA calls Mediator.Default.Send(book), that method invoked Action\<Book>, that Action property is set by ViewModelB in constructor, calling Mediator.Default.Register(Action that is specified here)
+
+ViewModels Communication Example: ViewA creates Book instance, ViewB shows all books. ViewA can create book and with Mediator send it to ViewB. ViewB has set Action for Mediator, that is going to be performed when Book is sent
+
+ViewModels & DelegateCommands: DelegateCommands work well with ViewModels, because they can access properties of that ViewModel. Set DelegateCommand instance in ViewModel constructor, so that it can access object properties

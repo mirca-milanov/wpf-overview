@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WpfOverview.Views.AllUsersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfOverview.Views"
+             xmlns:viewmodels="clr-namespace:WpfOverview.ViewModels"
+             xmlns:commands="clr-namespace:WpfOverview.Commands"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:AllUsersViewModel/>
+    </UserControl.DataContext>
+    <StackPanel>
+        <DataGrid ItemsSource="{Binding Path=Users}" IsReadOnly="True"/>
+        <Label Content="Search text:"/>
+        <TextBox Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Search"/>
+        <Button Content="Reset">
+            <Button.Command>
+                <commands:ResetFilterCommand/>
+            </Button.Command>
+            <Button.CommandParameter>
+                <Binding Path="SearchText"/>
+            </Button.CommandParameter>
+        </Button>
+    </StackPanel>
+</UserControl>

@@ -7,6 +7,7 @@
         xmlns:models="clr-namespace:WpfOverview.Models"
         xmlns:converters="clr-namespace:WpfOverview.Converters"
         xmlns:commands="clr-namespace:WpfOverview.Commands"        
+        xmlns:views="clr-namespace:WpfOverview.Views"    
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="610.886" Width="742.435" x:Name="wMain" WindowState="Maximized">
@@ -569,7 +570,7 @@
             <TabItem Header="Commands:">
                 <StackPanel>
                     <StackPanel.CommandBindings>
-                        
+
                     </StackPanel.CommandBindings>
                     <TextBlock Text="Basic command:"/>
                     <Button Content="Command" Command="{Binding}">
@@ -614,6 +615,12 @@
                         <Button Content="Click me." Command="{x:Static commands:RoutedContainerCommands.SayRoutedHello}">
                         </Button>
                     </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="MVVM:">
+                <StackPanel>
+                    <views:AddUserView/>
+                    <views:AllUsersView/>
                 </StackPanel>
             </TabItem>
         </TabControl>

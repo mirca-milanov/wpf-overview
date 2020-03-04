@@ -644,6 +644,14 @@
                     <TextBlock x:Name="tboxRestClientContainer"/>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Canvas Draw:">
+                <StackPanel Margin="10">
+                    <Canvas x:Name="canvasDraw" Background="Transparent" Height="300"/>
+                    <Button Content="Draw" Click="Button_Click_11"/>
+                    <Button Content="Clear" Click="Button_Click_10"/>
+                    <TextBlock Text="Purpose is to draw 100 thousand lines in shortest time possible"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

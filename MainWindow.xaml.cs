@@ -1,22 +1,22 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfOverview.Models;
 using WpfOverview.Views;
+using WpfOverview.Visual;
 
 namespace WpfOverview
 {
@@ -25,6 +25,8 @@ namespace WpfOverview
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<LineModel> lines;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,9 +46,7 @@ namespace WpfOverview
             superPeople.Add(new SuperPerson("Janny", "Johnsy", 52, false));
             superPeople.Add(new SuperPerson("Jill", "Ariel", 22, true));
 
-
-
-
+            RenderOptions.SetEdgeMode(this, EdgeMode.Aliased);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -168,7 +168,7 @@ namespace WpfOverview
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             var sfd = new SaveFileDialog();
-            
+
             if (sfd.ShowDialog() == true)
             {
                 tbSaveFileResult.Text = sfd.FileName;
@@ -183,6 +183,77 @@ namespace WpfOverview
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Thread.Sleep(5000);
+            tboxFreezeThread.Text = new Random().NextDouble().ToString();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            new Thread(() =>
+            {
+                Thread.Sleep(5000);
+                tboxDontFreezeThread.Dispatcher.Invoke(() => tboxDontFreezeThread.Text = new Random().NextDouble().ToString());
+            }).Start();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(5000);
+                tboxDontFreezeTask.Dispatcher.Invoke(() => tboxDontFreezeTask.Text = new Random().NextDouble().ToString());
+            });
+        }
+
+        private async void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(5000);
+            tboxDontFreezeTask2.Dispatcher.Invoke(() => tboxDontFreezeTask2.Text = new Random().NextDouble().ToString());
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (o, ea) =>
+            {
+                Thread.Sleep(5000);
+                tboxDontFreezeBW.Dispatcher.Invoke(() => tboxDontFreezeBW.Text = new Random().NextDouble().ToString());
+            };
+            bw.RunWorkerAsync();
+        }
+
+        private async void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            tboxRestClientContainer.Text = "Loading ...";
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync("https://jsonplaceholder.typicode.com/users");
+            var responseText = await response.Content.ReadAsStringAsync();
+            tboxRestClientContainer.Text = responseText;
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            // Drawingvisua, DrawingContext, 
+            canvasDraw.Children.Add(new VisualHost());
+
+            //Random random = new Random();
+            //var height = canvasDraw.ActualHeight;
+            //var width = canvasDraw.ActualWidth;
+
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    var line = new Line() { X1 = random.NextDouble() * width, X2 = random.NextDouble() * width, Y1 = random.NextDouble() * height, Y2 = random.NextDouble() * height, StrokeThickness = 1, Stroke = System.Windows.Media.Brushes.Red };
+            //    canvasDraw.Children.Add(line);
+            //}
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            canvasDraw.Children.Clear();
         }
     }
 }

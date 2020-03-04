@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,7 @@
     <Compile Include="Commands\RoutedContainerCommands.cs" />
     <Compile Include="Converters\AliveStatusConverter.cs" />
     <Compile Include="Models\DelegateCommandModel.cs" />
+    <Compile Include="Models\LineModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Patterns\UserAddingMediator.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Views\RandowWindow.xaml.cs">
       <DependentUpon>RandowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\VisualHost.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

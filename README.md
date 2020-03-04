@@ -62,9 +62,10 @@ This project is meant to cover every major topic of WPF framework.
   * Access Keys
   * Key Bindings
 * Long running tasks
+  * Delayed UI Update
   * REST Client
   * Database Client
-  * Canvas Drawing
+  * Canvas Draw
 * Custom Controls
   * UserControl
   * CustomControl
@@ -119,3 +120,7 @@ ViewModels Communication: ViewModelA needs to send data to ViewModelB. This can 
 ViewModels Communication Example: ViewA creates Book instance, ViewB shows all books. ViewA can create book and with Mediator send it to ViewB. ViewB has set Action for Mediator, that is going to be performed when Book is sent
 
 ViewModels & DelegateCommands: DelegateCommands work well with ViewModels, because they can access properties of that ViewModel. Set DelegateCommand instance in ViewModel constructor, so that it can access object properties
+
+Delayed UI Update: Thread, Asynchronous method, Method calling Task, BackgroundWorker instance
+
+Canvas Shape Drawing Performance: Creating Line object, and adding it to the Canvas (myCanvas.Children.Add(myLine)) is very slow, has bad performance. Performance improvement tips: RenderOptions.SetEdgeMode(this, EdgeMode.Aliased) in Window or Canvas increases performance massively. Second path is about using DrawingVisual, DrawingContext, DrawingContext.Draw methods, Pens & Brushes should be freezed, custom FrameworkElement to contain all of that, and be added to the Canvas in the end.

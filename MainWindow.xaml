@@ -623,6 +623,35 @@
                     <views:AllUsersView/>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Delayed UI Update:">
+                <StackPanel>
+                    <Button Content="Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_4"/>
+                    <TextBlock x:Name="tboxFreezeThread" Text="Text"/>
+                    <Button Content="Thread Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_5"/>
+                    <TextBlock x:Name="tboxDontFreezeThread" Text="Text"/>
+                    <Button Content="Task Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_6"/>
+                    <TextBlock x:Name="tboxDontFreezeTask" Text="Text"/>
+                    <Button Content="Task 2 Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_7"/>
+                    <TextBlock x:Name="tboxDontFreezeTask2" Text="Text"/>
+                    <Button Content="BackgroundWorker Don't Freeze UI &amp; update text after 5 seconds:" Click="Button_Click_8"/>
+                    <TextBlock x:Name="tboxDontFreezeBW" Text="Text"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Rest Client:">
+                <StackPanel>
+                    <Button Content="Get Data" Click="Button_Click_9"/>
+                    <TextBlock Text="Data from jsonplaceholder:"/>
+                    <TextBlock x:Name="tboxRestClientContainer"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Canvas Draw:">
+                <StackPanel Margin="10">
+                    <Canvas x:Name="canvasDraw" Background="Transparent" Height="300"/>
+                    <Button Content="Draw" Click="Button_Click_11"/>
+                    <Button Content="Clear" Click="Button_Click_10"/>
+                    <TextBlock Text="Purpose is to draw 100 thousand lines in shortest time possible"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

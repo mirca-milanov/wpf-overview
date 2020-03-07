@@ -125,4 +125,6 @@ Delayed UI Update: Thread, Asynchronous method, Method calling Task, BackgroundW
 
 Canvas Shape Drawing Performance: Creating Line object, and adding it to the Canvas (myCanvas.Children.Add(myLine)) is very slow, has bad performance. Performance improvement tips: RenderOptions.SetEdgeMode(this, EdgeMode.Aliased) in Window or Canvas increases performance massively. Second path is about using DrawingVisual, DrawingContext, DrawingContext.Draw methods, Pens & Brushes should be freezed, custom FrameworkElement to contain all of that, and be added to the Canvas in the end.
 
-Simple Wix Deployment: Install Wixtoolset, then Wax Visual Studio extension. To solution add Wix Setup MSI project, reference in it WPF application. Tool > Wix, UI setup, add projects, files, and ctrl+s to save. Product.wxs has xml elements that can be edited. Build Wix project
+Simple Wix Deployment: Install WixToolset, then Wax Visual Studio extension. To solution add Wix Setup MSI project, reference in it WPF application. Tool > Wix, UI setup, add projects, files, and ctrl+s to save. Product.wxs has xml elements that can be edited. Build Wix project
+
+Custom Wix Deployment: UI Deployment needs new reference from Program Files > Wix > bin > WixUI, then UIRef xml element in Product.wxs, Licence & Icon can be added. Dll files from libraries used in WPF project also need to be added. Cab1 file can be embeded.

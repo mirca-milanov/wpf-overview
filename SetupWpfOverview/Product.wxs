@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define WpfOverview_TargetDir=$(var.WpfOverview.TargetDir)?>
 	<Product Id="*" Name="WpfOverview" Language="1033" Version="1.0.0.0" Manufacturer="Me" UpgradeCode="84de05c2-1cd2-4187-963b-9735fe636820">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-
+    <UIRef Id="WixUI_Minimal"/>
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
 

@@ -140,7 +140,9 @@
     <Resource Include="Media\Bitmap1.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Media\spongebob.mp4" />
+    <Content Include="Media\spongebob.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

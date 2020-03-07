@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define WpfOverview_TargetDir=$(var.WpfOverview.TargetDir)?>
+	<Product Id="*" Name="WpfOverview" Language="1033" Version="1.0.0.0" Manufacturer="Me" UpgradeCode="84de05c2-1cd2-4187-963b-9735fe636820">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <UIRef Id="WixUI_Minimal"/>
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="WpfOverview" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="Media_files" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="WpfOverview">
+				  <Directory Id="Media" Name="Media" />
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			
+			
+			<Component Id="WpfOverview.exe" Guid="12120515-3353-407b-b7dc-176703164d79">
+			  <File Id="WpfOverview.exe" Name="WpfOverview.exe" Source="$(var.WpfOverview_TargetDir)WpfOverview.exe" />
+			</Component>
+			<Component Id="WpfOverview.exe.config" Guid="6489ace1-1416-4f92-9f9c-2f3584a84037">
+			  <File Id="WpfOverview.exe.config" Name="WpfOverview.exe.config" Source="$(var.WpfOverview_TargetDir)WpfOverview.exe.config" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="Media_files" Directory="Media">
+      
+    </ComponentGroup>
+  </Fragment>
+</Wix>

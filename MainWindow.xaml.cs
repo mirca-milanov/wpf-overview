@@ -230,20 +230,35 @@ namespace WpfOverview
         {
             tboxRestClientContainer.Text = "Loading ...";
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync("https://jsonplaceholder.typicode.com/users");
-            var responseText = await response.Content.ReadAsStringAsync();
-            tboxRestClientContainer.Text = responseText;
+            try
+            {
+
+                var response = await client.GetAsync("https://jsonplaceholder.typicode.com/users");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseText = await response.Content.ReadAsStringAsync();
+                    tboxRestClientContainer.Text = responseText;
+                }
+                else
+                {
+                    MessageBox.Show($"Failed: {response.Headers}");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Failed: {err.Message}");
+            }
         }
 
         private void Button_Click_11(object sender, RoutedEventArgs e)
         {
+            var height = canvasDraw.ActualHeight;
+            var width = canvasDraw.ActualWidth;
             // Drawingvisua, DrawingContext, 
-            canvasDraw.Children.Add(new VisualHost());
+            canvasDraw.Children.Add(new VisualHost(height, width));
+
 
             //Random random = new Random();
-            //var height = canvasDraw.ActualHeight;
-            //var width = canvasDraw.ActualWidth;
-
             //for (int i = 0; i < 100000; i++)
             //{
             //    var line = new Line() { X1 = random.NextDouble() * width, X2 = random.NextDouble() * width, Y1 = random.NextDouble() * height, Y2 = random.NextDouble() * height, StrokeThickness = 1, Stroke = System.Windows.Media.Brushes.Red };

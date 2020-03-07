@@ -10,9 +10,13 @@ namespace WpfOverview.Visual
 {
     public class VisualHost : FrameworkElement
     {
+        double height;
+        double width;
         private readonly VisualCollection _children;
-        public VisualHost()
+        public VisualHost(double height, double width)
         {
+            this.height = height;
+            this.width = width;
             _children = new VisualCollection(this)
             {
                 DrawLines()
@@ -24,14 +28,12 @@ namespace WpfOverview.Visual
             DrawingContext dc = dv.RenderOpen();
 
             Random random = new Random();
-            var height = 300;
-            var width = 1340;
 
             System.Windows.Media.Brush brush = new System.Windows.Media.SolidColorBrush(Color.FromRgb(255, 0, 0));
             brush.Freeze();
             System.Windows.Media.Pen pen = new System.Windows.Media.Pen(brush, 1);
             pen.Freeze();
-            for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 dc.DrawLine(pen, new Point(random.NextDouble() * width, random.NextDouble() * height), new Point(random.NextDouble() * width, random.NextDouble() * height));
             }
